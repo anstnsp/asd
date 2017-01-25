@@ -16,7 +16,7 @@
 	<!-- DB 접속 정보를 가지고 있는 문서 읽어들이기 -->
 	<beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<beans:property name="location">
-			<beans:value>classpath:com/gura/computer/mybatis/db.properties</beans:value>
+			<beans:value>classpath:test/gura/computer/mybatis/db.properties</beans:value>
 		</beans:property>
 	</beans:bean>
 	<!-- DataSource 설정 -->
@@ -31,7 +31,7 @@
 	<beans:bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource"/>
 		<beans:property name="configLocation"
-			value="classpath:com/gura/computer/mybatis/Configuration.xml"/>
+			value="classpath:test/gura/computer/mybatis/Configuration.xml"/>
 	</beans:bean>
 	
 	<!-- Dao 에 주입해줄 SqlSession 인터페이스를 구현한 SqlSessionTemplate 객체 -->
@@ -66,7 +66,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="test.gura.computer.*" />
+	<context:component-scan base-package="test.gura.computer" />
 	
    <!-- Spring Transaction Manager 설정 -->
 	<beans:bean id="txManager"
