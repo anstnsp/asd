@@ -8,7 +8,8 @@
 <h1>
 	Hello world!  
 </h1>
-
-<P> </P>
+<div>
+	<a href="QnA/insert_form.do">writerform</a>
+</div>
 </body>
 </html>
