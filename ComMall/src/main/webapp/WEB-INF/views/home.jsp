@@ -9,7 +9,7 @@
 	Hello world!  
 </h1>
 <div>
-	<a href="QnA/insert_form.do">writerform</a>
+	<a href="QnA/q&a.do">writerform</a>
 </div>
 </body>
 </html>

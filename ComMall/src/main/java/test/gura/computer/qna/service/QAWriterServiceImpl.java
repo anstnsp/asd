@@ -35,8 +35,9 @@ public class QAWriterServiceImpl implements QAWriterService{
 
 	@Override
 	public ModelAndView getlist(QAWriterDto dto) {
-		ModelAndView mView=writerDao.getlist(dto);
-		
+		List<QAWriterDto> list = writerDao.getlist(dto);
+		ModelAndView mView=new ModelAndView();
+		mView.addObject("list",list);
 		return mView;
 	}
 

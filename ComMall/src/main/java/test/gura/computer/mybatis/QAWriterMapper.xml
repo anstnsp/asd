@@ -11,7 +11,7 @@
 		values(QA_seq.NEXTVAL, #{writerMainquestion}, #{writerDetailquestion}, #{writerWriter}, sysdate)
 	</insert>
 	
-	<select id="getlist" parameterType="qawriterDto" resultType="QAWriterDto">
+	<select id="getlist" parameterType="QAWriterDto" resultType="QAWriterDto">
       SELECT *
       FROM QA_writer
    </select>

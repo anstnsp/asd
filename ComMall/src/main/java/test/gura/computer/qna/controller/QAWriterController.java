@@ -17,13 +17,13 @@ public class QAWriterController {
 	@Autowired
 	private QAWriterService writerService;
 	
-	@RequestMapping("/QnA/insert_form")
-	public String insertForm(){
-		
-		return "QnA/insert_form";
-	}
+//	@RequestMapping("/QnA/q&a")
+//	public String insertForm(){
+//		
+//		return "QnA/q&a";
+//	}
 	
-	@RequestMapping("/QnA/insert")
+	@RequestMapping("/QnA/qna_insert")
 	public ModelAndView insert(HttpServletRequest request,
 			@ModelAttribute QAWriterDto dto){
 		writerService.insert(dto);
@@ -34,11 +34,11 @@ public class QAWriterController {
 		return mView;
 	}
 	
-	@RequestMapping("/QnA/list")
+	@RequestMapping("/QnA/q&a")
 	public ModelAndView list(@ModelAttribute QAWriterDto dto){
 		ModelAndView mView=new ModelAndView();
 		mView = writerService.getlist(dto);
-		mView.setViewName("QnA/list");
+		mView.setViewName("QnA/q&a");
 		return mView;
 	}
 }
