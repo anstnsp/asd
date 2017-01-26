@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="members">
+	<insert id="insert" parameterType="membersDto">
+		INSERT INTO members
+		VALUES(
+		#{memberId},
+		#{memberPwd},
+		#{memberEmail},
+		#{memberPhone},
+		#{memberAddr},
+		SYSDATE
+		)
+	</insert>
+
+	<delete id="delete" parameterType="String">
+		DELETE
+		FROM members
+		WHERE memberId = #{memberId}
+	</delete>
+
+	<update id="update" parameterType="membersDto">
+		UPDATE members
+		SET
+		memberEmail = #{memberEmail},
+		memberPhone = #{memberPhone},
+		memberAddr = #{memberAddr}
+		WHERE memberId=#{memberId}
+	</update>
+
+	<select id="getList" resultType="membersDto">
+		SELECT
+		memberId,
+		memberEmail,
+		memberPhone,
+		memberAddr,
+		SYSDATE
+		FROM members
+		ORDER BY memberId DESC
+	</select>
+
+	<select id="checkedId" parameterType="String" resultType="membersDto">
+		SELECT
+		memberId
+		FROM members
+		WHERE memberId = #{memberId}
+	</select>
+
+	<select id="getData" parameterType="String" resultType="membersDto">
+		SELECT
+		memberId,
+		memberPwd,
+		memberEmail,
+		memberPhone,
+		memberAddr,
+		SYSDATE
+		FROM members
+		WHERE memberId = #{memberId}
+	</select>
+
+	<select id="signin" parameterType="String" resultType="String">
+		SELECT memberPwd
+		FROM members
+		WHERE memberId = #{memberId}
+	</select>
+</mapper>
+
+
+
+
