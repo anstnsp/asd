@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product">
+   <sql id="dateFormat">
+      TO_CHAR(regdate,'YYYY"년"MM"월"') regdate
+   </sql>
+   
+   <insert id="insert" parameterType="productDto"  >
+      INSERT INTO product (
+      productNum ,
+      productName,
+      brand ,
+      content,
+      price,
+      viewCount,
+      regdate,
+      saveFileName,
+      fileSize)
+      VALUES (
+      product_seq.NEXTVAL,
+      #{productName},
+      #{brand},
+      #{content},
+      #{price},
+      #{viewCount},
+      SYSDATE,
+      #{saveFileName},
+      #{fileSize}
+      )
+   </insert>
+   
+   <delete id="delete" parameterType="productDto" >
+      DELETE FROM product
+      WHERE productNum = #{productNum}
+   </delete>
+   
+   <update id="update" parameterType="productDto" >
+      UPDATE product
+      SET 
+      productName=#{productName},
+      brand=#{brand},
+      content=#{content},
+      price=#{price}
+      saveFileName =#{saveFileName}
+      fileSize = #{fileSize}
+      WHERE productNum = #{productNum}
+   </update>
+   
+   <select id="getData" parameterType="int" resultType="productDto">
+     
+      SELECT result1.*
+      FROM 
+         (SELECT productNum,productName,brand,content,price,<include refid="dateFormat"></include>, 
+         saveFileName,
+         LAG(productNum, 1, 0) OVER(ORDER BY productNum DESC) AS prevNum,
+         LEAD(productNum, 1, 0) OVER(ORDER BY productNum DESC) AS nextNum
+         FROM product
+         ORDER BY productNum DESC) result1
+         WHERE productNum=#{num}
+   </select>
+  
+   <update id="increaseViewCount" parameterType="int">
+      UPDATE product
+      SET viewCount = viewCount+1
+      WHERE productNum=#{num}
+   </update>
+   
+   <select id="getList" parameterType="productDto" resultType="productDto">
+         SELECT *
+    	  FROM
+         (SELECT result1.*, ROWNUM rnum
+         FROM (SELECT productNum,productName,brand,content,price,viewCount,<include refid="dateFormat"></include>,
+              saveFileName,fileSize
+              FROM product
+              <where>
+				  	<if test="productName != null">
+				  		OR productName LIKE '%'||#{productName}||'%'
+				  	</if>
+				  	<if test="brand != null">
+				  		OR brand LIKE '%'||#{brand}||'%'
+				  	</if>
+				  </where>
+              ORDER BY productNum DESC
+              ) result1
+                 )
+      WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+   </select>
+   	
+   
+   <select id="getCount" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM product
+		<where>
+				  	<if test="productName != null">
+				  		OR productName LIKE '%'||#{productName}||'%'
+				  	</if>
+				  	<if test="brand != null">
+				  		OR brand LIKE '%'||#{brand}||'%'
+				  	</if>
+				  </where>
+	</select>
+	
+	<select id="getRankedViewCount"   resultType="productDto">
+		select * from product p1
+			where 3 > (select count(viewCount) from product p2
+			where p2.viewCount > p1.viewCount)
+			order by viewCount desc
+	</select>
+</mapper>
