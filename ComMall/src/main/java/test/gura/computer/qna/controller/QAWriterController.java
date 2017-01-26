@@ -12,7 +12,7 @@ import test.gura.computer.qna.dto.QAWriterDto;
 import test.gura.computer.qna.service.QAWriterService;
 
 @Controller
-public class QnaController {
+public class QAWriterController {
 	
 	@Autowired
 	private QAWriterService writerService;
