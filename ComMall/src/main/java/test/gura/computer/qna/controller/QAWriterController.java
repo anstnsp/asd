@@ -26,6 +26,7 @@ public class QAWriterController {
 	@RequestMapping("/QnA/qna_insert")
 	public ModelAndView insert(HttpServletRequest request,
 			@ModelAttribute QAWriterDto dto){
+		System.out.println("test");
 		writerService.insert(dto);
 		ModelAndView mView=new ModelAndView();
 		mView.addObject("msg", dto.getWriterWriter()+" 회원님 QA가 저장되었습니다..");
