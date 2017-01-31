@@ -23,7 +23,7 @@ public class ProductController {
 			@RequestParam(defaultValue="1") int pageNum){
 		
 		ModelAndView mView = productService.getList(request, pageNum);
-		mView.setViewName("product/list");
+		mView.setViewName("product/product_list");
 		return mView;
 	}
 	
@@ -34,15 +34,22 @@ public class ProductController {
 	@RequestMapping("/product/private/insert")
 	public String insert(ProductDto dto){
 		productService.insert(dto);
-		return "product/list";
+		return "product/product_list";
 	}
 	@RequestMapping("/product/product_info")
 	public ModelAndView productInfo(HttpServletRequest request){
 		int num=Integer.parseInt(request.getParameter("productNum"));
 		productService.increaseViewCount(num);
 		ModelAndView mView=  productService.getData(num);
-		mView.setViewName("product/product_info");
+		mView.setViewName("product_info");
 		return mView;
 	}
-	
+	@RequestMapping("/users/product/list")
+	public ModelAndView list1(HttpServletRequest request,
+			@RequestParam(defaultValue="1") int pageNum){
+		
+		ModelAndView mView = productService.getList(request, pageNum);
+		mView.setViewName("product/product_list");
+		return mView;
+	}
 }

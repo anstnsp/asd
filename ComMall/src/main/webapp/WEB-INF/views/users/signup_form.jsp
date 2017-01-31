@@ -21,12 +21,12 @@
 <body>
 <div class="container">
 	<h3>회원가입</h3>
-	<form action="" method="post">
+	<form action="signup.do" method="post">
 		<div class="form-group">
 			<label class="control-label" for="userId">아이디:</label>
 			
 			<input class="form-control" type="text" id="userId" name="userId"/>
-			<button class="btn btn-default" id="idCheck" type="button">중복 확인 헤헤</button>
+			<button class="btn btn-default" id="idCheck" type="button">중복 확인</button>
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="userPwd">비밀번호:</label>
@@ -109,6 +109,7 @@
 	 					location.href="${pageContext.request.contextPath }/home.do"
 	 				}
 	 				else{
+	 					alert(data);
 	 					alert("회원 가입에 실패 하였습니다.");
 	 				}
 	 			}  

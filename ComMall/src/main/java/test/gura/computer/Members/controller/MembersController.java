@@ -23,11 +23,13 @@ public class MembersController {
 	public void MoveForm() {
 	}
 	//회원가입
-	@RequestMapping(value = "/signup")
+	@RequestMapping(value ="/signup.do")
 	@ResponseBody
 	public int Insert(@ModelAttribute MembersDto dto) {
+		
 		return service.insert(dto);
 	}
+	
 	//아이디 체크
 	@RequestMapping("/idCheck.do")
 	@ResponseBody
