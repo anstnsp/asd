@@ -203,7 +203,7 @@
    <form action="qna_insert.do" method="post">
         <div class="questionWrite">	
 			<div class="form-group">
-				<input type="hidden" name="writerNum" value="${writerNum}"/>
+				<input type="hidden" name="writerNum" value="${dto.productNum}"/>
 				<label class="control-label" for="writerMainquestion">제목:</label>
 				<input class="form-control" type="text" name="writerMainquestion" id="writerMainquestion"/>
 			</div>
