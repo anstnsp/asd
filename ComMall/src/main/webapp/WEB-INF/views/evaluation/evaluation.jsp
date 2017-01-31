@@ -56,7 +56,7 @@
          </tr>
       </thead>
       <tbody>
-         <c:forEach var="tmp" items="${list}">
+         <c:forEach var="tmp" items="${list2}">
          <tr class="qnaTitle warning">
          	<td>${tmp.evaNum}</td>
             <td class="viewContent" style="cursor:pointer" onclick="showcontent(${tmp.evaNum})">${tmp.evaTitle }</td>

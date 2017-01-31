@@ -8,6 +8,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="test.gura.computer.product.dto.ProductDto" alias="productDto"/>
 		<typeAlias type="test.gura.computer.Members.dto.MembersDto" alias="membersDto"/>
 		<typeAlias type="test.gura.computer.qna.dto.QAWriterDto" alias="QAWriterDto"/>
+		<typeAlias type="test.gura.computer.qna.dto.QAAnswerDto" alias="qaanswerDto"/>
 	</typeAliases>
 
 	<!-- sql 문을 정의하고 있는 xml 문서 정보 -->
@@ -15,6 +16,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="test/gura/computer/mybatis/ProductMapper.xml"/>
 		<mapper resource="test/gura/computer/mybatis/MembersMapper.xml"/>
 		<mapper resource="test/gura/computer/mybatis/QAWriterMapper.xml"/>
+		<mapper resource="test/gura/computer/mybatis/QAAnswerMapper.xml"/>
 	</mappers>
 </configuration>
 

@@ -3,17 +3,17 @@ package test.gura.computer.qna.dto;
 public class QAAnswerDto {
 	private int answerNum;
 	private String answerWriter;
-	private String content;
+	private String answerContent;
 	private int answerRef_num;
 	private String regdate;
 	
 	QAAnswerDto(){}
 
-	public QAAnswerDto(int answerNum, String answerWriter, String content, int answerRef_num, String regdate) {
+	public QAAnswerDto(int answerNum, String answerWriter, String answerContent, int answerRef_num, String regdate) {
 		super();
 		this.answerNum = answerNum;
 		this.answerWriter = answerWriter;
-		this.content = content;
+		this.answerContent = answerContent;
 		this.answerRef_num = answerRef_num;
 		this.regdate = regdate;
 	}
@@ -34,12 +34,12 @@ public class QAAnswerDto {
 		this.answerWriter = answerWriter;
 	}
 
-	public String getContent() {
-		return content;
+	public String getAnswerContent() {
+		return answerContent;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setAnswerContent(String answerContent) {
+		this.answerContent = answerContent;
 	}
 
 	public int getAnswerRef_num() {
@@ -57,6 +57,8 @@ public class QAAnswerDto {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
+
+	
 	
 	
 }

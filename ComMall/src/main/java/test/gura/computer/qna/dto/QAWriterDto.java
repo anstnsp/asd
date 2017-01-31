@@ -1,4 +1,4 @@
-package test.gura.computer.qna.dto;
+ package test.gura.computer.qna.dto;
 
 public class QAWriterDto {
 	private int writerNum;

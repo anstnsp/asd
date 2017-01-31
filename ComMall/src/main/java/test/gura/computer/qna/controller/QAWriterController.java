@@ -1,6 +1,9 @@
 package test.gura.computer.qna.controller;
 
+import java.security.Provider.Service;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,22 +27,13 @@ public class QAWriterController {
 //	}
 	
 	@RequestMapping("/product/qna_insert")
-	public ModelAndView insert(HttpServletRequest request,
-			@ModelAttribute QAWriterDto dto){
-		System.out.println("test");
+	public ModelAndView insert(@ModelAttribute QAWriterDto dto,HttpSession session){
+		String id = (String) session.getAttribute("id");
+		dto.setWriterWriter(id);
 		writerService.insert(dto);
 		ModelAndView mView=new ModelAndView();
-		mView.addObject("msg", dto.getWriterWriter()+" 회원님 QA가 저장되었습니다..");
-		mView.addObject("redirectUri", request.getContextPath());
-		mView.setViewName("users/alert");
+		mView.setViewName("redirect:/product/product_info.do?productNum="+dto.getWriterNum());
 		return mView;
 	}
 	
-	@RequestMapping("/product/q&a")
-	public ModelAndView list(@ModelAttribute QAWriterDto dto){
-		ModelAndView mView=new ModelAndView();
-		mView = writerService.getlist(dto);
-		mView.setViewName("product/q&a");
-		return mView;
-	}
 }

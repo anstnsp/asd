@@ -1,3 +1,4 @@
+
 package test.gura.computer.product.controller;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import test.gura.computer.product.dto.ProductDto;
 import test.gura.computer.product.service.ProductService;
+import test.gura.computer.qna.service.QAWriterService;
 
 @Controller
 public class ProductController {
@@ -23,6 +25,8 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private QAWriterService qaWriterService;
 	
 	@RequestMapping("/product/list")
 	public ModelAndView list(HttpServletRequest request,
@@ -49,6 +53,7 @@ public class ProductController {
 		int num=Integer.parseInt(request.getParameter("productNum"));
 		productService.increaseViewCount(num);
 		ModelAndView mView=  productService.getData(num);
+		mView.addObject("list", qaWriterService.getlist());
 		mView.setViewName("product/product_info");
 		return mView;
 	}
@@ -63,3 +68,4 @@ public class ProductController {
 	
 
 }
+

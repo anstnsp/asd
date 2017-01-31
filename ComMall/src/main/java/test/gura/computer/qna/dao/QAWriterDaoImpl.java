@@ -27,8 +27,8 @@ public class QAWriterDaoImpl implements QAWriterDao{
 	}
 
 	@Override
-	public List<QAWriterDto> getlist(QAWriterDto dto) {
-		List<QAWriterDto> list=session.selectList("writer.getlist", dto);
+	public List<QAWriterDto> getlist() {
+		List<QAWriterDto> list=session.selectList("writer.getlist");
 		return list;
 	}
 
