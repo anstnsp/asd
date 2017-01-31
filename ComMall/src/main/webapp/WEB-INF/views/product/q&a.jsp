@@ -1,23 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
-<script src="${pageContext.request.contextPath }/resources/js/jquery-3.1.1.js"></script>
 <style>
    .qnaBox{
       display:none;
-      border:2px solid orange;
+
       height:100%;
    }
    .questionWrite{
    	  display:none;
    }
-   
    .qnaContent{
       height: 50%;
    }
    .adminWrite{
-      border-top:1px solid;
+      
    }
    .glyphicon-question-sign{
       font-size:25px;
@@ -32,6 +29,15 @@
    }
    .testT{
       display:none;
+   }
+   .answerBtn{
+   	  
+   }
+   .aContent{
+   		display:none;
+   }
+   .deleteBtn{
+   		margin-left:20px;
    }
 </style>
 <body>
@@ -52,20 +58,29 @@
          </tr>
          <tr class="qnaBox">
             <td colspan="3">
-               <div class="qnaContent"><span class="glyphicon glyphicon-question-sign "></span>${tmp.writerDetailquestion}</div><br/>
+               <div class="qnaContent"><span class="glyphicon glyphicon-question-sign "></span><span>:</span>${tmp.writerDetailquestion}</div>
+               <div style="margin-top:20px;border:1px solid grey;"></div>
                <div class="adminWrite">
                   <form action="a_insert.do?writerNum=${tmp.writerNum}&productNum=${productNum}" method="post">
-                     <span class="glyphicon glyphicon-text-color"></span>
+                     <p style="margin-top:10px;font-size:18px">
+                     	<strong>답변</strong>
+                     </p>  	
+                    
                      <c:forEach var="tmp2" items="${list2}">  
-                     	
                         <c:if test="${tmp.writerNum eq tmp2.answerRef_num}">
-                           <p>${tmp2.answerContent}
-                           <c:if test="${id eq 'admin'}">
-                                       <button type="button" on
-                                       click="location.href='adelete.do?num=${tmp2.answerRef_num}&productNum=${productNum}'">삭제</button>
-                                    </c:if>
-                                 <c:set var="num3" value="${tmp2.answerRef_num}"/>   
-                    			 <c:set var="con3" value="${tmp2.answerContent}"/>                      
+                        	
+                           <p><span style="vertical-align:middle; width:85%; display:inline-block;">${tmp2.answerContent}</span>
+                          	 <c:if test="${id eq 'admin'}">
+                          		  <button  type="button" class="btn btn-default answerBtn1  deleteBtn" >수정</button>
+                  		      	  <button class="btn btn-default deleteBtn" type="button" onclick="location.href='adelete.do?num=${tmp2.answerRef_num}&productNum=${productNum}'">삭제</button>
+                 			 </c:if>
+                            <div style="margin-top:20px;border:1px dotted grey;"></div>
+                           	<div class="answerBtn">
+                           		<input type="hidden" value="${tmp2.answerRef_num }" />
+                			   	
+                   		        <c:set var="num3" value="${tmp2.answerRef_num}"/>   
+               			    	<c:set var="con3" value="${tmp2.answerContent}"/>           
+              			    </div>        
                            </p>
                         </c:if>
                      </c:forEach>   
@@ -73,29 +88,32 @@
                      <!-- <p>${tmp3}</p> for문안에 있는 값을 밖으로 빼올 수 있다. -->
                         <c:choose>
                            <c:when test="${num3 ne tmp.writerNum}">
-                              <textarea name="answerContent" id="" cols="100" rows="5" value=""></textarea>
+                         	  <div class="form-group">
+                              <textarea class="form-control" name="answerContent" id="" cols="100" rows="5" value="" style="width:85%; display:inline-block; resize:none; vertical-align:middle;"></textarea>
                               <c:choose>
                                  <c:when test="${id ne 'admin'}">
-                                    <button class="btn btn-default" id="qnaBtn" type="submit" disabled="disabled">등록</button>
+                                    <button class="btn btn-default" id="qnaBtn" type="submit" disabled="disabled" style="margin-left:5%;">등록하기</button>
                                  </c:when>
                                  <c:otherwise>
-                                    <button class="btn btn-default" id="qnaBtn" type="submit">등록</button>
+                                    <button class="btn btn-default" id="qnaBtn" type="submit" style="margin-left:5%; ">등록하기</button>
                                  </c:otherwise>
                               </c:choose>
+                              </div>
                            </c:when>
                            <c:otherwise>
                               <div>
-                                 <c:if test="${id eq 'admin'}">
-                                    <button  type="button" class="btn btn-default answerBtn" >수정</button>
-                                 </c:if>
-                                 <textarea class="testT" name="answerContent" cols="100" rows="5" value="">${con3}</textarea>
-                                 <input type="hidden" value="${num3}" />
-                                 <c:if test="${id eq 'admin'}">
-                                 	<button class="qaUpdateBtn" type="button">수정확인</button>
-                                 </c:if>
+                                 <div class="form-group aContent">
+                                	 <textarea class="testT form-control" name="answerContent" cols="100" rows="5" value="" style="width:85%; display:inline-block; resize:none; vertical-align:middle;">${con3}</textarea>
+                                	 <input type="hidden" value="${num3}" />
+                       		          <c:if test="${id eq 'admin'}">
+                                 		<button class="qaUpdateBtn btn btn-info" type="button" style="margin-left:5%; ">수정확인</button>
+                               		  </c:if>
+                                 </div>
+                                 
                               </div>
                          </c:otherwise>
                       </c:choose>
+
 
                   </form>
                </div>
@@ -108,7 +126,7 @@
    <button type="submit" class="btn btn-info questionBtn" style="float:right">글쓰기</button>
    
    <form action="qna_insert.do?productNum=${productNum}" method="post">
-        <div class="questionWrite">
+        <div class="questionWrite">	
 			<div class="form-group">
 				<input type="hidden" name="writerNum" value="${writerNum}"/>
 				<label class="control-label" for="writerMainquestion">제목:</label>
@@ -174,9 +192,13 @@
          location.href="product/q&a.jsp?num=${dto.num}&productNum=${productNum}";
       }
    });
+   $(".answerBtn1").on("click",function(){
+		$(this).parents().find(".aContent").toggle();
+   });
+   
    
    $(".answerBtn").on("click",function(){
-	      $(this).next("textarea.testT").toggle();
+	      $(this).next(".aContent").toggle()
 	      
 	   });
 	   
