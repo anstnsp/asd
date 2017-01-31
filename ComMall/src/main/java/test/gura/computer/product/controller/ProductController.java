@@ -41,7 +41,7 @@ public class ProductController {
 		int num=Integer.parseInt(request.getParameter("productNum"));
 		productService.increaseViewCount(num);
 		ModelAndView mView=  productService.getData(num);
-		mView.setViewName("product_info");
+		mView.setViewName("product/product_info");
 		return mView;
 	}
 	@RequestMapping("/users/product/list")
