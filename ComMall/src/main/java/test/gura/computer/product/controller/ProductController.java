@@ -46,10 +46,6 @@ public class ProductController {
 		productService.increaseViewCount(num);
 		ModelAndView mView=  productService.getData(num);
 		mView.addObject("list", qaWriterService.getlist());
-		for(QAWriterDto tmp : qaWriterService.getlist()){
-			System.out.println(tmp.getWriterDetailquestion());
-		}
-		System.out.println("hi");
 		mView.setViewName("product/product_info");
 		return mView;
 	}
