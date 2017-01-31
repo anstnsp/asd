@@ -68,6 +68,7 @@
 </style>
 <jsp:include page="/WEB-INF/views/resource.jsp"/>
 </head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 <body>
 <jsp:include page="/WEB-INF/views/catalog.jsp"/>
 <div class="container">
@@ -149,8 +150,9 @@
 </style>	
 </body>
 	<div class="rankBox">
+		<div class="animated infinite flash" ><font color="blue" size="5">★★인기상품★★</font></div>
 		<c:set var="num" value="0"/>
-		<c:forEach var="tmp" items="${list2}" begin="0" end="4">
+		<c:forEach var="tmp" items="${list2}" begin="0" end="2">
 			<div class="rangkImgBox" onclick="detailView(${tmp.productNum})"><img src="${pageContext.request.contextPath }/upload/${tmp.saveFileName}"/></div>
 			<div class="productName"><strong style="font-size:14px">[${num+1}] ${tmp.productName } </strong></div>
 			<c:set var="num" value="${num+1}"/>
