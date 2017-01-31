@@ -11,7 +11,7 @@ import test.gura.computer.qna.dto.QAWriterDto;
 public interface QAWriterService {
 	public void insert(QAWriterDto dto);
 	public List<QAWriterDto> getdata(int num);
-	public ModelAndView getlist(QAWriterDto dto);
+	public List<QAWriterDto> getlist();
 	public void delete(int num);
 	public void update(QAWriterDto dto);
 }

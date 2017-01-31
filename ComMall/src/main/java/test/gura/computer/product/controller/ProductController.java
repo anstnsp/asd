@@ -10,13 +10,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import test.gura.computer.product.dto.ProductDto;
 import test.gura.computer.product.service.ProductService;
+import test.gura.computer.qna.dao.QAAnswerDao;
+import test.gura.computer.qna.dto.QAWriterDto;
+import test.gura.computer.qna.service.QAWriterService;
 
 @Controller
 public class ProductController {
 	
-	
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private QAWriterService qaWriterService;
 	
 	@RequestMapping("/product/list")
 	public ModelAndView list(HttpServletRequest request,
@@ -41,15 +45,18 @@ public class ProductController {
 		int num=Integer.parseInt(request.getParameter("productNum"));
 		productService.increaseViewCount(num);
 		ModelAndView mView=  productService.getData(num);
+		mView.addObject("list", qaWriterService.getlist());
+		for(QAWriterDto tmp : qaWriterService.getlist()){
+			System.out.println(tmp.getWriterDetailquestion());
+		}
+		System.out.println("hi");
 		mView.setViewName("product/product_info");
 		return mView;
 	}
 	@RequestMapping("/users/product/list")
 	public ModelAndView list1(HttpServletRequest request,
 			@RequestParam(defaultValue="1") int pageNum){
-		
 		ModelAndView mView = productService.getList(request, pageNum);
-		mView.setViewName("product/product_list");
 		return mView;
 	}
 }

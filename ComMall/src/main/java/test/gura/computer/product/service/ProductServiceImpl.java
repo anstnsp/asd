@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import test.gura.computer.product.dao.ProductDao;
 import test.gura.computer.product.dto.ProductDto;
+import test.gura.computer.qna.dao.QAWriterDao;
 
 @Component
 public class ProductServiceImpl implements ProductService{
@@ -22,7 +23,6 @@ public class ProductServiceImpl implements ProductService{
 		
 		@Autowired
 		private ProductDao productDao;
-		
 	@Override
 	public void insert(ProductDto dto) {
 		productDao.insert(dto);

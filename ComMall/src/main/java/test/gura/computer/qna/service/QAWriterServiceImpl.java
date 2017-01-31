@@ -13,18 +13,18 @@ import org.springframework.web.servlet.ModelAndView;
 import test.gura.computer.qna.dao.QAWriterDao;
 import test.gura.computer.qna.dto.QAWriterDto;
 
-@Component 
-public class QAWriterServiceImpl implements QAWriterService{
-	//비밀번호 인코더 객체
-	private PasswordEncoder pEncoder=new BCryptPasswordEncoder();
-	
+@Component
+public class QAWriterServiceImpl implements QAWriterService {
+	// 비밀번호 인코더 객체
+	private PasswordEncoder pEncoder = new BCryptPasswordEncoder();
+
 	@Autowired
 	private QAWriterDao writerDao;
-	
+
 	@Override
 	public void insert(QAWriterDto dto) {
 		writerDao.insert(dto);
-		
+
 	}
 
 	@Override
@@ -34,23 +34,20 @@ public class QAWriterServiceImpl implements QAWriterService{
 	}
 
 	@Override
-	public ModelAndView getlist(QAWriterDto dto) {
-		List<QAWriterDto> list = writerDao.getlist(dto);
-		ModelAndView mView=new ModelAndView();
-		mView.addObject("list",list);
-		return mView;
+	public List<QAWriterDto> getlist() {
+		return writerDao.getlist();
 	}
 
 	@Override
 	public void delete(int num) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void update(QAWriterDto dto) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

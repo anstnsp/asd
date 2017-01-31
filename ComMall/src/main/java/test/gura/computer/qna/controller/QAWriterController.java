@@ -35,11 +35,4 @@ public class QAWriterController {
 		return mView;
 	}
 	
-	@RequestMapping("/product/q&a")
-	public ModelAndView list(@ModelAttribute QAWriterDto dto){
-		ModelAndView mView=new ModelAndView();
-		mView = writerService.getlist(dto);
-		mView.setViewName("product/q&a");
-		return mView;
-	}
 }
