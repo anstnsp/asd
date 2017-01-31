@@ -8,7 +8,7 @@
 </style>
 <div class="navbar navbar-inverse">
 	<a class="navbar-brand" href="${pageContext.request.contextPath}/home.do">Main</a>
-	<a class="navbar-brand" href="product/list.do">컴퓨터</a>
+	<a class="navbar-brand" href="${pageContext.request.contextPath}/product/list.do">컴퓨터</a>
 	
 	<div class="right">
 	<c:choose>

@@ -60,4 +60,6 @@ public class ProductController {
 		mView.setViewName("product/product_list");
 		return mView;
 	}
+	
+
 }
