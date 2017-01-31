@@ -7,13 +7,14 @@
    
    <insert id="insert" parameterType="productDto"  >
       INSERT INTO product (
-      productNum ,
+      productNum,
       productName,
-      brand ,
+      brand,
       content,
       price,
       viewCount,
       regdate,
+      orgFileName,
       saveFileName,
       fileSize)
       VALUES (
@@ -24,6 +25,7 @@
       #{price},
       #{viewCount},
       SYSDATE,
+      #{orgFileName},
       #{saveFileName},
       #{fileSize}
       )

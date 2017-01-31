@@ -1,5 +1,7 @@
 package test.gura.computer.product.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProductDto {
 	private int productNum;
 	private String productName;
@@ -9,6 +11,8 @@ public class ProductDto {
 	private int viewCount;
 	private String regdate;
 	
+	private MultipartFile myFile;
+	private String orgFileName;
 	private String saveFileName;	//파일 시스템에 저장된 파일명
 	private long fileSize;			//파일의 크기 byte
 	
@@ -22,8 +26,8 @@ public class ProductDto {
 
 
 	public ProductDto(int productNum, String productName, String brand, String content, int price, int viewCount,
-			String regdate, String saveFileName, long fileSize, int startRowNum, int endRowNum, int prevNum,
-			int nextNum) {
+			String regdate, MultipartFile myFile, String orgFileName, String saveFileName, long fileSize,
+			int startRowNum, int endRowNum, int prevNum, int nextNum) {
 		super();
 		this.productNum = productNum;
 		this.productName = productName;
@@ -32,6 +36,8 @@ public class ProductDto {
 		this.price = price;
 		this.viewCount = viewCount;
 		this.regdate = regdate;
+		this.myFile = myFile;
+		this.orgFileName = orgFileName;
 		this.saveFileName = saveFileName;
 		this.fileSize = fileSize;
 		this.startRowNum = startRowNum;
@@ -111,6 +117,26 @@ public class ProductDto {
 	}
 
 
+	public MultipartFile getMyFile() {
+		return myFile;
+	}
+
+
+	public void setMyFile(MultipartFile myFile) {
+		this.myFile = myFile;
+	}
+
+
+	public String getOrgFileName() {
+		return orgFileName;
+	}
+
+
+	public void setOrgFileName(String orgFileName) {
+		this.orgFileName = orgFileName;
+	}
+
+
 	public String getSaveFileName() {
 		return saveFileName;
 	}
@@ -171,6 +197,9 @@ public class ProductDto {
 	}
 
 
+	
+
+	
 	
 }
 	

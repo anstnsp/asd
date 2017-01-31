@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import test.gura.computer.product.dto.ProductDto;
 
 public interface ProductService {
-	   public void insert(ProductDto dto);
+	   public void insert(HttpServletRequest request,ProductDto dto);
 	   public void delete(int num);
 	   public void update(ProductDto dto);
 	   public ModelAndView getData(int num);

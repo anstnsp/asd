@@ -1,12 +1,18 @@
 package test.gura.computer.product.controller;
 
+import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+
 import org.springframework.web.servlet.ModelAndView;
+
 
 import test.gura.computer.product.dto.ProductDto;
 import test.gura.computer.product.service.ProductService;
@@ -32,9 +38,11 @@ public class ProductController {
 		
 	}
 	@RequestMapping("/product/private/insert")
-	public String insert(ProductDto dto){
-		productService.insert(dto);
-		return "product/product_list";
+	public String insert(HttpServletRequest request,ProductDto dto){
+		
+	      productService.insert(request,dto);
+	     
+		return "redirect:../list.do";
 	}
 	@RequestMapping("/product/product_info")
 	public ModelAndView productInfo(HttpServletRequest request){
