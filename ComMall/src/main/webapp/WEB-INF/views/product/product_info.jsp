@@ -200,7 +200,7 @@
    
    <button type="submit" class="btn btn-info questionBtn" style="float:right">글쓰기</button>
    
-   <form action="qna_insert.do?productNum=${productNum}" method="post">
+   <form action="qna_insert.do" method="post">
         <div class="questionWrite">	
 			<div class="form-group">
 				<input type="hidden" name="writerNum" value="${writerNum}"/>
