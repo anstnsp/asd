@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -12,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import test.gura.computer.product.dao.ProductDao;
 import test.gura.computer.product.dto.ProductDto;
 
-
+@Component
 public class ProductServiceImpl implements ProductService{
 	//한 페이지에 나타낼 로우의 갯수
 		private static final int PAGE_ROW_COUNT=9;

@@ -67,6 +67,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="test.gura.computer" />
+	<context:component-scan base-package="test.gura.computer.*"/>
 	
    <!-- Spring Transaction Manager 설정 -->
 	<beans:bean id="txManager"
