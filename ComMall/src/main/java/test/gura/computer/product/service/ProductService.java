@@ -16,5 +16,5 @@ public interface ProductService {
 	   public ModelAndView getList(HttpServletRequest request, int pageNum);
 	   public int getCount();
 	   public void increaseViewCount(int num);
-	   public ModelAndView getRankedViewCount();
+	   public List<ProductDto> getRankedViewCount();
 }

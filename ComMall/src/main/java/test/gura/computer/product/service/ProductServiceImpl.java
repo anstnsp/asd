@@ -147,8 +147,8 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return productDao.getCount();
 	}
 
 	@Override
@@ -158,9 +158,10 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public ModelAndView getRankedViewCount() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ProductDto> getRankedViewCount() {
+		List<ProductDto> list = productDao.getRankedViewCount();
+		
+		return list;
 	}
 
 }

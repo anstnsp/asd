@@ -42,9 +42,7 @@
 		top:5px;
 		left:-15px;	
 	}
-	.buyBtn{
-		float:right;
-	}
+	
 </style>
 </head>
 <body>
@@ -72,8 +70,15 @@
 			</div>
 			<div class="price"><strong>가 격 : ${dto.price}</strong></div>
 			<hr/>
-			<span>총 가격 : <span id="totalPrice">${dto.price}</span></span>
+			<span>총 가격 : <span id="totalPrice">${dto.price}</span>
+			<br/><br/>
+			<div>
 			<button class="btn btn-success buyBtn">구매하기</button>
+			<button class="btn btn-warning waitBtn">장바구니</button>
+			</div>
+			
+			
+			
 		</div>
 	</div>
 	<div class="content">${dto.content}</div>

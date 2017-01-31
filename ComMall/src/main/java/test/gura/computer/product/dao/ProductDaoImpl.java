@@ -48,8 +48,8 @@ public class ProductDaoImpl implements ProductDao{
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		int count=session.selectOne("product.getCount");
+		return count;
 	}
 
 	@Override
@@ -60,8 +60,8 @@ public class ProductDaoImpl implements ProductDao{
 
 	@Override
 	public List<ProductDto> getRankedViewCount() {
-		// TODO Auto-generated method stub
-		return null;
+		List<ProductDto> list =session.selectList("product.getRankedViewCount");
+		return list;
 	}
 
 }
