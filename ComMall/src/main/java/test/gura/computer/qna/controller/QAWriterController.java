@@ -23,7 +23,7 @@ public class QAWriterController {
 //		return "QnA/q&a";
 //	}
 	
-	@RequestMapping("/QnA/qna_insert")
+	@RequestMapping("/product/qna_insert")
 	public ModelAndView insert(HttpServletRequest request,
 			@ModelAttribute QAWriterDto dto){
 		System.out.println("test");
@@ -35,11 +35,11 @@ public class QAWriterController {
 		return mView;
 	}
 	
-	@RequestMapping("/QnA/q&a")
+	@RequestMapping("/product/q&a")
 	public ModelAndView list(@ModelAttribute QAWriterDto dto){
 		ModelAndView mView=new ModelAndView();
 		mView = writerService.getlist(dto);
-		mView.setViewName("QnA/q&a");
+		mView.setViewName("product/q&a");
 		return mView;
 	}
 }
