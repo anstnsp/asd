@@ -136,12 +136,12 @@
                <div class="qnaContent"><span class="glyphicon glyphicon-question-sign "></span><span>:</span>${tmp.writerDetailquestion}</div>
                <div style="margin-top:20px;border:1px solid grey;"></div>
                <div class="adminWrite">
-                  <form action="a_insert.do?writerNum=${tmp.writerNum}&productNum=${productNum}" method="post">
+                  <form action="a_insert.do?writerNum=${tmp.writerNum}&productNum=${dto.productNum}" method="post">
                      <p style="margin-top:10px;font-size:18px">
                      	<strong>답변</strong>
                      </p>  	
                     
-                     <c:forEach var="tmp2" items="${list2}">  
+                     <c:forEach var="tmp2" items="${list3}">  
                         <c:if test="${tmp.writerNum eq tmp2.answerRef_num}">
                         	
                            <p><span style="vertical-align:middle; width:85%; display:inline-block;">${tmp2.answerContent}</span>
@@ -158,8 +158,8 @@
               			    </div>        
                            </p>
                         </c:if>
-                     </c:forEach>   
-                   
+                     </c:forEach>    
+                                      
                      <!-- <p>${tmp3}</p> for문안에 있는 값을 밖으로 빼올 수 있다. -->
                         <c:choose>
                            <c:when test="${num3 ne tmp.writerNum}">
