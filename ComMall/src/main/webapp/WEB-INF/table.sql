@@ -6,6 +6,7 @@ content CLOB,
 price NUMBER,
 viewCount NUMBER,
 regdate DATE,
+orgFileName VARCHAR2(100) NOT NULL,
 saveFileName VARCHAR2(100) NOT NULL,
 fileSize NUMBER NOT NULL
 );
