@@ -157,10 +157,10 @@
 	</div>
 <script>
 	$(".writeBtn").click(function(){
-		location.href="${pageContext.request.contextPath}/views/product/private/insertform.do";
+		location.href="${pageContext.request.contextPath}/product/private/insertform.do";
 	});
 	function detailView(data){
-		location.href="${pageContext.request.contextPath}/views/product/product_info.do?productNum="+data;
+		location.href="${pageContext.request.contextPath}/product/product_info.do?productNum="+data;
 	}
 </script>
 </html>

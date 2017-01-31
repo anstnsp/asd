@@ -106,4 +106,6 @@
 			where p2.viewCount > p1.viewCount)
 			order by viewCount desc
 	</select>
+	
+	
 </mapper>
