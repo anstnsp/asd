@@ -7,7 +7,7 @@ public class QAAnswerDto {
 	private int answerRef_num;
 	private String regdate;
 	
-	QAAnswerDto(){}
+	public QAAnswerDto(){}
 
 	public QAAnswerDto(int answerNum, String answerWriter, String answerContent, int answerRef_num, String regdate) {
 		super();
