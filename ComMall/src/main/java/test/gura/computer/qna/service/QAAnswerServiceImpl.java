@@ -26,13 +26,13 @@ public class QAAnswerServiceImpl implements QAAnswerService{
 
 	@Override
 	public void update(QAAnswerDto dto) {
-		// TODO Auto-generated method stub
+		qaanswerDao.update(dto);
 		
 	}
 
 	@Override
 	public void delete(int num) {
-		// TODO Auto-generated method stub
+		qaanswerDao.delete(num);
 		
 	}
 

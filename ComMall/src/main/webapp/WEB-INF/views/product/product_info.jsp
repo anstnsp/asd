@@ -309,7 +309,7 @@
                            <p><span style="vertical-align:middle; width:85%; display:inline-block;">${tmp2.answerContent}</span>
                           	 <c:if test="${id eq 'admin'}">
                           		  <button  type="button" class="btn btn-default answerBtn1  deleteBtn" >수정</button>
-                  		      	  <button class="btn btn-default deleteBtn" type="button" onclick="location.href='adelete.do?num=${tmp2.answerRef_num}&productNum=${productNum}'">삭제</button>
+                  		      	  <button class="btn btn-default deleteBtn" type="button" onclick="location.href='adelete.do?num=${tmp2.answerNum}&productNum=${dto.productNum}'">삭제</button>
                  			 </c:if>
                             <div style="margin-top:20px;border:1px dotted grey;"></div>
                            	<div class="answerBtn">
@@ -360,8 +360,9 @@
       </tbody>
    </table>
    
+   <c:if test="${id ne null }">
    <button type="submit" class="btn btn-info questionBtn" style="float:right">글쓰기</button>
-   
+   </c:if>
    <form action="qna_insert.do" method="post">
         <div class="questionWrite">	
 			<div class="form-group">
@@ -461,7 +462,7 @@ $("#countDown").click(function(){
 	     $(".qaUpdateBtn").click(function() {
 	        var content = $(this).parent().find("textarea").val();
 	        var num = $(this).siblings("input").val();
-	        location.href="aupdate.do?num="+num+"&content="+content+"&productNum=${productNum}";
+	        location.href="aupdate.do?num="+num+"&content="+content+"&productNum=${dto.productNum}";
 	              
 	     })
 </script>

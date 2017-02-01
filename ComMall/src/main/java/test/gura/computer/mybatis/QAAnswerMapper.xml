@@ -11,4 +11,14 @@
 	<select id="getList" resultType="qaanswerDto">
 		SELECT * FROM QA_answer
 	</select>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM QA_answer WHERE answerNum=#{answerNum}
+	</delete>
+	
+	<update id="update" parameterType="test.gura.computer.qna.dto.QAAnswerDto" >
+		UPDATE QA_answer SET 
+		answerContent = #{answerContent}
+		WHERE answerRef_num = #{answerRef_num}
+	</update>
 </mapper>
