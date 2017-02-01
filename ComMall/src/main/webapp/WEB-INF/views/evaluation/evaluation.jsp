@@ -2,47 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <style>
-   .qnaBox{
-      display:none;
-      height:100%;
-   }
-   .qnaContent{
-      height: 50%;
-   }
-   .adminWrite{
-     
-   }
-   .glyphicon-question-sign{
-      font-size:25px;
-      color:red;
-   }
-   .glyphicon-text-color{
-      font-size:25px;
-      color:#73FAFF;
-   }
-   .writeBox{
-   	width: 50%;
-   	margin-left:25%;
-   }
-   .replyAtag{
-	   margin-top:5px;
-	   float:right;
-	   font-color:red;
-	   text-decoration: none;
-   }
-   .replyAtag:ACTIVE, .replyAtag:HOVER , .replyAtag:AFTER , .replyAtag:FOCUS{
-		font-color:red;
-   }
- 
-   .contentTR{
-   	display:none;
-   }
-   .replyBox{
-   	display:none;
-   }
-   .writeBox{
-		display:none;
-   }
 </style>
 <div class="container">
    <table class="table table-hover">
@@ -162,15 +121,3 @@
    </div>
    </center>
 </div>
-<script>
-	function showcontent(data){
-		$(".showContent"+data).toggle();
-	};
-	
-	$(".write_eval_Btn").click(function(){
-		$(".writeBox").toggle();
-	});
-	$(".showReply").click(function(){
-		$(this).next().next("div.replyBox").toggle();
-	});
-</script>
