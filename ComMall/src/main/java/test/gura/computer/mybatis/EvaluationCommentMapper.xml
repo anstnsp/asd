@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="evaluationComment">
+	<select id="getSequence" resultType="int">
+		SELECT eva_comment_seq.NEXTVAL
+		FROM DUAL
+	</select>
+	
+	<select id="getSortSequence" resultType="int">
+		SELECT sort_comment_seq.NEXTVAL
+		FROM DUAL
+	</select>
+	
+	<insert id="insert" parameterType="evaluationCommentDto">
+		INSERT INTO evacomment
+		(comNum, comWriter, comContent, comTarget_id, comRef_group, comComment_group , comSort_group, regdate)
+		VALUES(#{comNum}, #{comWriter}, #{comContent}, #{comTarget_id}, #{comRef_group}, #{comComment_group}, #{comSort_group}, SYSDATE)
+	</insert>
+	
+	<update id="update" parameterType="evaluationCommentDto">
+		UPDATE evacomment
+		SET comContent = #{comContent}
+		WHERE comNum = #{comNum}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM evacomment
+		WHERE comNum = #{num}
+	</delete>
+	
+	<select id="getList" parameterType="int" resultType="evaluationCommentDto">
+		SELECT comNum, comWriter, comContent, comTarget_id, comRef_group, comComment_group, comSort_group, TO_CHAR(regdate, 'YYYY"/"MM"/"DD" "HH24":"MI') AS regdate
+		FROM evacomment
+		WHERE comRef_group = #{num}
+		ORDER BY comComment_group ASC,comSort_group ASC 
+	</select>
+	
+	
+</mapper>

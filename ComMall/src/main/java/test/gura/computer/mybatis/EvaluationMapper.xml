@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="evaluation">
+	<insert id="insert" parameterType="evaluationDto">
+		INSERT INTO evaluation(evaNum, productNum, evaTitle, evaWriter, evaContent, regdate)
+		VALUES(eva_comment_seq.NEXTVAL, #{productNum}, #{evaTitle}, #{evaWriter}, #{evaContent}, SYSDATE)
+	</insert>
+	
+	<update id="update" parameterType="evaluationDto">
+		UPDATE evaluation
+		SET evaTitle = #{evaTitle}, evaContent = #{evaContent}
+		WHERE evaNum = #{evaNum}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM evaluation
+		WHERE evaNum = #{num}
+	</delete>
+	
+	<select id="getData" parameterType="int" resultType="evaluationDto">
+		SELECT evaNum, evaTitle, evaWriter, evaContent, TO_CHAR(regdate, 'YYYY"/"MM"/"DD" "HH24":"MI') AS regdate
+		FROM evaluation
+		WHERE evaNum = #{num}
+	</select>
+	
+	<select id="getList" parameterType="int" resultType="evaluationDto">
+		SELECT evaNum, evaTitle, evaWriter,evaContent, TO_CHAR(regdate, 'YYYY"/"MM"/"DD" "HH24":"MI') AS regdate
+		FROM evaluation
+		WHERE productNum = #{productNum}
+		ORDER BY regdate DESC
+	</select>
+	
+	<select id="getCount" resultType="int">
+		SELECT NVL(MAX(ROWNUM),0)
+		FROM evaluation
+	</select>
+</mapper>
