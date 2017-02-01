@@ -43,9 +43,8 @@ public class QAAnswerServiceImpl implements QAAnswerService{
 	}
 
 	@Override
-	public ModelAndView getList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<QAAnswerDto> getList() {
+		return qaanswerDao.getList();
 	}
 
 }

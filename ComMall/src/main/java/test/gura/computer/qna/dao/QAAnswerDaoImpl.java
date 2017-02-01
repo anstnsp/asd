@@ -42,8 +42,10 @@ public class QAAnswerDaoImpl implements QAAnswerDao{
 
 	@Override
 	public List<QAAnswerDto> getList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<QAAnswerDto> list = null;
+		list = session.selectList("answer.getList");
+		
+		return list;
 	}
 
 

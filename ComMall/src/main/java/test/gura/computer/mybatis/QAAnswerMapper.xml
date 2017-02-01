@@ -6,4 +6,9 @@
 		INSERT INTO QA_answer (answerNum,answerWriter,answerContent,answerRef_num,regdate) 
 		VALUES(QAnswer_seq.NEXTVAL, #{answerWriter}, #{answerContent}, #{answerRef_num}, SYSDATE)
 	</insert>
+	
+	
+	<select id="getList" resultType="qaanswerDto">
+		SELECT * FROM QA_answer
+	</select>
 </mapper>
