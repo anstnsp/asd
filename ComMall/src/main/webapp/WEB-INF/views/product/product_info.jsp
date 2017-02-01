@@ -78,7 +78,47 @@
    .deleteBtn{
    		margin-left:20px;
    }
-
+   .qnaBox{
+      display:none;
+      height:100%;
+   }
+   .qnaContent{
+      height: 50%;
+   }
+   .adminWrite{
+     
+   }
+   .glyphicon-question-sign{
+      font-size:25px;
+      color:red;
+   }
+   .glyphicon-text-color{
+      font-size:25px;
+      color:#73FAFF;
+   }
+   .writeBox{
+   	width: 50%;
+   	margin-left:25%;
+   }
+   .replyAtag{
+	   margin-top:5px;
+	   float:right;
+	   font-color:red;
+	   text-decoration: none;
+   }
+   .replyAtag:ACTIVE, .replyAtag:HOVER , .replyAtag:AFTER , .replyAtag:FOCUS{
+		font-color:red;
+   }
+ 
+   .contentTR{
+   	display:none;
+   }
+   .replyBox{
+   	display:none;
+   }
+   .writeBox{
+		display:none;
+   }
 	
 </style>
 </head>
@@ -119,7 +159,124 @@
 		</div>
 	</div>
 	<div class="content">${dto.content}</div>
-	<div class="evaluation"></div>
+	<div class="evaluation">
+	<table class="table table-hover">
+      <p><strong style="font-size:30px">상품평 등록 </strong></p>
+      <thead>
+         <tr>
+         	<th style="width:10%">글 번호</th>
+            <th style="width:50%">제목</th>
+            <th style="width:20%"><strong>작성자</strong></th>
+            <th>등록일</th>
+         </tr>
+      </thead>
+      <tbody>
+         <c:forEach var="tmp" items="${list2}">
+         <tr class="qnaTitle warning">
+         	<td>${tmp.evaNum}</td>
+            <td class="viewContent" style="cursor:pointer" onclick="showcontent(${tmp.evaNum})">${tmp.evaTitle }</td>
+            <td>${tmp.evaWriter }</td>
+            <td>${tmp.regdate }</td>
+         </tr>
+         <tr class="contentTR showContent${tmp.evaNum}">
+         	<td colspan="4"><span>내용 :</span> ${tmp.evaContent}
+         		<div style="margin-top:20px;border:1px solid grey;"></div>
+         		<c:forEach var="replytmp" items="${commentList}">
+         			<c:if test="${replytmp.comNum eq tmp.evaNum}">
+      				<div class="replyContent" style="border-bottom:1px dotted grey;clear:both;
+      					<c:if test="${replytmp.comComment_group ne replytmp.comSort_group}">margin-left:70px;</c:if>
+      				">
+      					
+      						<strong>From.${replytmp.comWriter}</strong> ${replytmp.regdate} 
+	      					<span style="float:right;cursor:pointer;" class="showReply">답글 달기</span>
+	      					<p><strong><span style="font-color:grey">To.${replytmp.comTarget_id}</span></strong> ${replytmp.comContent}</p>
+		      				<div class="replyBox replyContent${replytmp.comNum}">
+						        <form action="comment_insert.do" method="post">
+									<div class="form-group">
+										<p style="margin-top:10px;font-size:18px"><strong>답글 달기</strong></p>
+										<input type="hidden" name="comNum" value="${tmp.evaNum}" />
+										<input type="hidden" name="comRef_group" value="${dto.productNum}"/>
+										<input type="hidden" name="comTarget_id" value="${tmp.evaWriter }"/>
+										<input type="hidden" name="comComment_group" value="${replytmp.comComment_group}"/>
+										<textarea class="form-control" name="comContent" id="comContent" style="width:85%; float:left; resize:none;"></textarea>
+									</div>
+								<button class="btn btn-default" type="submit" style="margin-left:5%;margin-bottom:60px;">답글  작성</button>
+								</form>
+							</div>
+						
+      				</div>
+      				</c:if>
+         		</c:forEach>
+         		<div>
+			        <form action="comment_insert.do" method="post">
+						<div class="form-group">
+							<p style="margin-top:10px;font-size:18px"><strong>댓글 달기</strong></p>
+							<input type="hidden" name="comNum" value="${tmp.evaNum}" />
+							<input type="hidden" name="comRef_group" value="${dto.productNum}"/>
+							<input type="hidden" name="comTarget_id" value="${tmp.evaWriter }"/>
+							<input type="hidden" name="comComment_group" value="0"/>
+							<textarea class="form-control" name="comContent" id="comContent" style="width:85%; float:left; resize:none;"></textarea>
+						</div>
+							<button class="btn btn-default" type="submit" style="margin-left:5%;margin-bottom:20px;">댓글  작성</button>
+					</form>
+				</div>
+         	</td>
+         </tr>
+         </c:forEach>
+      </tbody>
+   </table>
+   
+	<button type="submit" class="btn btn-info write_eval_Btn" style="float:right">글쓰기</button>
+	
+	<!-- 글 등록 form  -->
+	<div class="writeBox form-group">
+		<form action="insert.do" method="post">
+		<div class="form-group">
+			<input type="hidden" name="productNum" value="${dto.productNum}"/>
+			<label class="control-label" for="title">제목:</label>
+			<input class="form-control" type="text" name="evaTitle" id="evaTitle"/>
+		</div>
+		<div class="form-group">
+			<label class="control-label" for="writerDetailquestion">후기:</label>
+			<textarea class="form-control" name="evaContent" id="evaContent" cols="30" rows="10"></textarea>
+		</div>
+			<button class="btn btn-default" type="submit">작성</button>
+		</form>
+	</div>
+<!--pagenation  시작-->
+   <div class="page_display">
+   <center>
+      <ul class="pagination">
+      <c:choose>
+         <c:when test="">
+            <li><a href="">&laquo;</a></li>
+         </c:when>
+         <c:otherwise>
+            <li class="disabled"><a class="muted" href="javascript:">&laquo;</a></li>
+         </c:otherwise>
+      </c:choose>
+      <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+         <c:choose>
+            <c:when test="">
+               <li class="active"><a href="list.do?pageNum=${i }">${i }</a></li>   
+            </c:when>
+            <c:otherwise>
+               <li><a href="list.do?pageNum=${i }&&list_num=${listNum}">${i }</a></li>
+            </c:otherwise>
+         </c:choose>    
+      </c:forEach>
+      <c:choose>
+         <c:when test="">
+            <li><a href="">&raquo;</a></li>
+         </c:when>
+         <c:otherwise>
+            <li class="disabled"><a class="muted" href="javascript:">&raquo;</a></li>
+         </c:otherwise>
+      </c:choose>
+      </ul>
+   </div>
+   </center>
+	</div>
 	<div class="qa">
 		   <table class="table">
       <thead>
@@ -307,4 +464,17 @@ $("#countDown").click(function(){
 	        location.href="aupdate.do?num="+num+"&content="+content+"&productNum=${productNum}";
 	              
 	     })
+</script>
+
+<script>
+	function showcontent(data){
+		$(".showContent"+data).toggle();
+	};
+	
+	$(".write_eval_Btn").click(function(){
+		$(".writeBox").toggle();
+	});
+	$(".showReply").click(function(){
+		$(this).next().next("div.replyBox").toggle();
+	});
 </script>
