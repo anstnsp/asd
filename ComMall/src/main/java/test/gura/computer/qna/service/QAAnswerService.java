@@ -13,5 +13,5 @@ public interface QAAnswerService {
 	public void update(QAAnswerDto dto);
 	public void delete(int num);
 	public List<QAAnswerDto> getData(int num);
-	public ModelAndView getList();
+	public List<QAAnswerDto> getList();
 }

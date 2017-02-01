@@ -24,13 +24,13 @@ public class QAAnswerDaoImpl implements QAAnswerDao{
 
 	@Override
 	public void update(QAAnswerDto dto) {
-		// TODO Auto-generated method stub
+		session.update("answer.update",dto);
 		
 	}
 
 	@Override
 	public void delete(int num) {
-		// TODO Auto-generated method stub
+		session.delete("answer.delete", num);
 		
 	}
 
@@ -42,8 +42,10 @@ public class QAAnswerDaoImpl implements QAAnswerDao{
 
 	@Override
 	public List<QAAnswerDto> getList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<QAAnswerDto> list = null;
+		list = session.selectList("answer.getList");
+		
+		return list;
 	}
 
 

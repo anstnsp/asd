@@ -13,6 +13,7 @@ import test.gura.computer.evaluation.service.EvaluationCommentService;
 import test.gura.computer.evaluation.service.EvaluationService;
 import test.gura.computer.product.dto.ProductDto;
 import test.gura.computer.product.service.ProductService;
+import test.gura.computer.qna.service.QAAnswerService;
 import test.gura.computer.qna.service.QAWriterService;
 
 @Controller
@@ -25,6 +26,8 @@ public class ProductController {
 	private EvaluationService evalService;
 	@Autowired
 	private EvaluationCommentService commentService;
+	@Autowired
+	private QAAnswerService qaAnswerService;
 	
 	@RequestMapping("/product/list")
 	public ModelAndView list(HttpServletRequest request,
@@ -53,6 +56,7 @@ public class ProductController {
 		ModelAndView mView=  productService.getData(num);
 		mView.addObject("list", qaWriterService.getlist());
 		mView.addObject("list2",evalService.getList(num));
+		mView.addObject("list3",qaAnswerService.getList());
 		mView.addObject("commentList",commentService.getList(num));
 		mView.setViewName("product/product_info");
 		return mView;
