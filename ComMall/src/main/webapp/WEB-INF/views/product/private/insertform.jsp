@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
+<jsp:include page="/WEB-INF/views/resource.jsp"/>
 <html>
 <head>
 <meta charset="UTF-8"/>
@@ -10,9 +11,13 @@
 	SmartEditor/js/HuskyEZCreator.js"></script>
 </head>
 <body>
+
+<jsp:include page="/WEB-INF/views/catalog.jsp"/>
+<div class="container">
+
 <h3>상품 등록</h3>
 <form action="insert.do" method="post" enctype="multipart/form-data">
-	<label for="writer">작성자</label>
+	<label for="writer">작성자:</label>
 	<input type="text" id="writer" 
 		value="${id }" disabled="disabled"/><br/>
 	<label for="productName">상품명:</label>
@@ -63,5 +68,8 @@ function submitContents(elClickedObj) {
 	} catch(e) {}
 }
 </script>
+
+</div>
+<jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>
