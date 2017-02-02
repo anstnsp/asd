@@ -197,14 +197,18 @@
       				<div class="replyContent" style="border-bottom:1px dotted grey;clear:both;
       					<c:if test="${replytmp.comComment_group ne replytmp.comSort_group}">margin-left:70px;</c:if>
       				">
-      					
+					
       						<strong>From.${replytmp.comWriter}</strong> ${replytmp.regdate} 
-	      					<span style="float:right;cursor:pointer;" class="showReply">답글 달기</span>
+      						<c:if test="${id ne null }">
+	      						<span style="float:right;cursor:pointer;" class="showReply">답글 달기</span>
+	      					</c:if>
 	      					<p><strong><span style="font-color:grey">To.${replytmp.comTarget_id}</span></strong> ${replytmp.comContent}</p>
 		      				<div class="replyBox replyContent${replytmp.comNum}">
 						        <form action="comment_insert.do" method="post">
 									<div class="form-group">
+										<c:if test="${id ne null }">
 										<p style="margin-top:10px;font-size:18px"><strong>답글 달기</strong></p>
+										</c:if>
 										<input type="hidden" name="comNum" value="${tmp.evaNum}" />
 										<input type="hidden" name="comRef_group" value="${dto.productNum}"/>
 										<input type="hidden" name="comTarget_id" value="${tmp.evaWriter }"/>
@@ -218,6 +222,7 @@
       				</div>
       				</c:if>
          		</c:forEach>
+         		<c:if test="${id ne null }">
          		<div>
 			        <form action="comment_insert.do" method="post">
 						<div class="form-group">
@@ -228,9 +233,10 @@
 							<input type="hidden" name="comComment_group" value="0"/>
 							<textarea class="form-control" name="comContent" id="comContent" style="width:85%; float:left; resize:none;"></textarea>
 						</div>
-							<button class="btn btn-default" type="submit" style="margin-left:5%;margin-bottom:20px;">댓글  작성</button>
+							<button class="btn btn-default" type="submit" style="margin-left:5%;margin-bottom:20px;">댓글 작성</button>
 					</form>
 				</div>
+				</c:if>
          	</td>
          </tr>
          </c:forEach>
