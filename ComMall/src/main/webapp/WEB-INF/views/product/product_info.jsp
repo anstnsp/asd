@@ -237,7 +237,10 @@
       </tbody>
    </table>
    
-	<button type="submit" class="btn btn-info write_eval_Btn" style="float:right">글쓰기</button>
+   <c:if test="${id ne null }">
+ 	  	<button type="submit" class="btn btn-info write_eval_Btn" style="float:right">글쓰기</button>
+   </c:if>
+	
 	
 	<!-- 글 등록 form  -->
 	<div class="writeBox form-group">
