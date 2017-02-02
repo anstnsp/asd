@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cart">
+   <sql id="dateFormat">
+      TO_CHAR(regdate,'YYYY"년"MM"월"') regdate
+   </sql>
+   
+   <insert id="insert">
+   		insert into cart values
+   		( (select nvl(max(idx)+1,1) from cart)
+   		, #{memberId}, #{productNum}, #{amount},SYSDATE )
+   </insert>
+   
+   <select id="getList" parameterType="String" resultType="cartDto">
+   	select * from (
+   	select idx, m.memberId, p.productNum, p.productName,p.saveFileName, p.brand, p.price, c.amount, price*amount as money
+   	from cart c, Members m, product p
+   	where c.memberId = m.memberId
+   	and c.productNum = p.productNum
+   	order by idx)
+   	where memberId=#{memberId}
+   </select>
+   
+
+</mapper>

@@ -119,6 +119,9 @@
    .writeBox{
 		display:none;
    }
+   .inline-form{
+   		display:inline;
+   }
 	
 </style>
 </head>
@@ -129,30 +132,38 @@
 <div class="container">
 	<div class="product_main">
 		<hr/>
-		<div class="productName"><strong style="font-size:20px;">상품명: (${dto.brand}) ${dto.productName }</strong></div>
+		<div class="productName"><strong style="font-size:20px;">${dto.productNum}상품명: (${dto.brand}) ${dto.productName }</strong></div>
 		<hr/>
 		<div class="imgBox">
 			<img src="${pageContext.request.contextPath }/upload/${dto.saveFileName}"/>
 		</div>
 		<div class="contentBox">
-			<div class="brand">브랜드 : ${dto.brand}</div></br>
-			<div class="regdate">등록 일자 : ${dto.regdate}</div></br>
-			<p>배송정보 : 무료배송 | 퀵서비스 | 직접수령 | VIP배송</p></br>
+			<div class="brand">브랜드 : ${dto.brand}</div><br/>
+			<div class="regdate">등록 일자 : ${dto.regdate}</div><br/>
+			<p>배송정보 : 무료배송 | 퀵서비스 | 직접수령 | VIP배송</p><br/>
 			<div class="count">
 				<p>주문수량 :
-					<input type="text" id="count" value="1" style="width:30px;"/>
+					<input type="text" name="amount" id="count" value="1" style="width:30px;"/>
 					<span class="glyphicon glyphicon-triangle-top" id="countUp"></span>
 					<span class="glyphicon glyphicon-triangle-bottom" id="countDown"></span>
 				</p>
 			</div>
 			<div class="price"><strong>가 격 : ${dto.price}</strong></div>
 			<hr/>
-			<span>총 가격 : <span id="totalPrice">${dto.price}</span>
+			총 가격 : <span id="totalPrice">${dto.price}</span>
 			<br/><br/>
+			
 			<div>
-			<button class="btn btn-success buyBtn">구매하기</button>
-			<button class="btn btn-warning waitBtn">장바구니</button>
+				<button class="btn btn-success buyBtn">구매하기</button>
+				
+				<form class="inline-form" action="${pageContext.request.contextPath}/product/private/cartInsert.do" method="post">
+					<input type="hidden" name="productNum" value="${dto.productNum }" />
+					<button class="btn btn-warning waitBtn">장바구니담기</button>
+				</form>
+			
 			</div>
+			
+			
 			
 			
 			
@@ -479,3 +490,4 @@ $("#countDown").click(function(){
 		$(this).next().next("div.replyBox").toggle();
 	});
 </script>
+

@@ -69,7 +69,26 @@ answerContent varchar2(500),
 answerRef_num number,
 regdate date);
 
+create or replace
+
+CREATE TABLE cart (
+idx number not null primary key,
+memberId varchar2(50) not null,
+productNum number not null,
+amount number default 1,
+regdate date
+);
 
 
+--뷰 생성
+create or replace view cart_v
+as
+select idx, m.memberid, p.productNum, price, amount, price*amount as money
+from cart c, members m, product p
+where c.memberid=m.memberid
+and c.productNum=p.productNum
+order by idx;
 
+--뷰 실행
+select * from cart_v;
 
