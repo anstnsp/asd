@@ -11,4 +11,5 @@ public interface CartService {
 	public void cartAdd(CartDto dto);
 	
 	public List<CartDto> cartList(String memberId);
+	public void cartDelete(int productNum);
 }

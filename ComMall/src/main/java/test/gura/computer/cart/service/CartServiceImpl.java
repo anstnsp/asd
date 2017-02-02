@@ -31,6 +31,12 @@ public class CartServiceImpl implements CartService{
 		
 		return list;
 	}
+
+	@Override
+	public void cartDelete(int productNum) {
+		cartDao.cartDelete(productNum);
+		
+	}
 	
 
 }

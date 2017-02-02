@@ -48,4 +48,14 @@ public class CartController {
 		return "product/private/cartlist";
 		
 	}
+	
+	@RequestMapping("/product/private/cartDelete")
+	public String cartDelete(HttpSession session,@RequestParam int productNum){
+		
+		System.out.println("장바구니 삭제 하는데임");
+		String memberId = (String)session.getAttribute("id");
+		cartService.cartDelete(productNum);
+		
+		return "redirect:/product/private/cartList.do";
+	}
 }

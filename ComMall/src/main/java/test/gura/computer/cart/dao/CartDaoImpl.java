@@ -27,4 +27,10 @@ public class CartDaoImpl implements CartDao{
 		return list;
 	}
 
+	@Override
+	public void cartDelete(int productNum) {
+		session.delete("cart.delete", productNum);
+		
+	}
+
 }

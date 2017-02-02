@@ -21,5 +21,8 @@
    	where memberId=#{memberId}
    </select>
    
-
+	<delete id="delete" parameterType="int">
+	delete from cart
+	where productNum=#{productNum}
+	</delete>
 </mapper>

@@ -11,6 +11,10 @@
 img{
 		width:20%;
 	}
+	.totalprice{
+		float:right;
+		font-size:30px;
+	}
 </style>
 </head>
 <body>
@@ -32,8 +36,10 @@ img{
 		</tr>
 	</thead>
 	<tbody>
-	<c:forEach var="tmp" items="${list }">
+	
+	<c:forEach var="tmp" items="${list }" >
 		<tr height="30">
+		
 			<td>${tmp.productNum }</td>
 			<td>${tmp.productName }</td>
 			<td><img src="${pageContext.request.contextPath }/upload/${tmp.saveFileName}"/></td>
@@ -42,15 +48,33 @@ img{
 			<td>${tmp.price }</td>
 			<td>${tmp.amount }</td>
 			<td>${tmp.money }</td>
-			<td><input type="button" value="삭제" /></td>
+			
+			<c:set var="sum" value="${sum=sum+tmp.money }"/>
+		
+			<td>
+			<form action="${pageContext.request.contextPath}/product/private/cartDelete.do" method="post">
+				<input type="hidden" name="productNum" value="${tmp.productNum }"/>
+				<button>삭제</button>
+			</form>
+			</td>
+			
 		</tr>
 	</c:forEach>
-		
+	<!-- <button class="cartDelete">삭제</button> -->
 	</tbody>
 </table>
 <button class="btn btn-success buyBtn">구매하기</button>
 	<button class="btn btn-primary listBtn">상품목록이동</button>
+	<div class="totalprice">총 금액 : ${sum}원</div> 
 </div>
+
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
+
+<script>
+$(".listBtn").click(function(){
+	location.href="${pageContext.request.contextPath}/product/list.do";
+})
+
+</script>
 </body>
 </html>
