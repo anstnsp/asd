@@ -42,7 +42,7 @@ img{
 		
 			<td>${tmp.productNum }</td>
 			<td>${tmp.productName }</td>
-			<td><img src="${pageContext.request.contextPath }/upload/${tmp.saveFileName}"/></td>
+			<td onclick="detailView(${tmp.productNum})"><img src="${pageContext.request.contextPath }/upload/${tmp.saveFileName}"/></td>
 			
 			<td>${tmp.brand }</td>
 			<td>${tmp.price }</td>
@@ -74,7 +74,9 @@ img{
 $(".listBtn").click(function(){
 	location.href="${pageContext.request.contextPath}/product/list.do";
 })
-
+function detailView(data){
+		location.href="${pageContext.request.contextPath}/product/product_info.do?productNum="+data;
+	}
 </script>
 </body>
 </html>
