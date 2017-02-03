@@ -23,6 +23,6 @@
    
 	<delete id="delete" parameterType="int">
 	delete from cart
-	where productNum=#{productNum}
+	where idx=#{idx}
 	</delete>
 </mapper>

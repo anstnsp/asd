@@ -141,27 +141,33 @@
 			<div class="brand">브랜드 : ${dto.brand}</div><br/>
 			<div class="regdate">등록 일자 : ${dto.regdate}</div><br/>
 			<p>배송정보 : 무료배송 | 퀵서비스 | 직접수령 | VIP배송</p><br/>
-			<div class="count">
-				<p>주문수량 :
-					<input type="text" name="amount" id="count" value="1" style="width:30px;"/>
-					<span class="glyphicon glyphicon-triangle-top" id="countUp"></span>
-					<span class="glyphicon glyphicon-triangle-bottom" id="countDown"></span>
-				</p>
-			</div>
-			<div class="price"><strong>가 격 : ${dto.price}</strong></div>
-			<hr/>
-			총 가격 : <span id="totalPrice">${dto.price}</span>
-			<br/><br/>
-			
-			<div>
-				<button class="btn btn-success buyBtn">구매하기</button>
-				
-				<form class="inline-form" action="${pageContext.request.contextPath}/product/private/cartInsert.do" method="post">
+			<form class="inline-form" action="${pageContext.request.contextPath}/product/private/cartInsert.do" method="post">
+					주문수량:<select name="amount" id="amount" >
+						<c:forEach begin="1" end="10" var="i">
+						<option  name="option" value="${i }">${i }</option>
+						
+						</c:forEach>
+						</select>
+					<div class="price"><strong>가 격 : ${dto.price}원</strong></div>
 					<input type="hidden" name="productNum" value="${dto.productNum }" />
+					<hr />
+					
+					<div>총 가격 :<span>${dto.price}</span>원</div>
 					<button class="btn btn-warning waitBtn">장바구니담기</button>
-				</form>
+						
+			</form>
+			<button class="btn btn-success buyBtn">구매하기</button>
 			
-			</div>
+			
+			<hr/>
+		
+			<script>
+				$("#amount").on("change",function(){
+					var a =  $(this).val();
+					$(this).parent().find("div > span").text("${dto.price}"*a);
+				})
+			</script>
+		
 			
 			
 			
@@ -444,21 +450,7 @@
 </html>
 
 <script>
-$("#countUp").click(function(){
-	var count = $("#count").val();
-	count ++;
-	$("#count").val(count);
-	$("#totalPrice").text(count*${dto.price});
-});
-$("#countDown").click(function(){
-	var count = $("#count").val();
-	if(count == 1){
-		return;
-	}
-	count --;
-	$("#count").val(count);
-	$("#totalPrice").text(count*${dto.price});
-});
+var sum =$("#amount").val();
 </script>
 
 <script>

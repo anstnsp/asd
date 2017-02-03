@@ -23,12 +23,14 @@ public class CartController {
 	
 	@RequestMapping("/product/private/cartInsert")
 	public String cartInsert(HttpSession session,
-			@RequestParam int productNum,Model model
+			@RequestParam int productNum,
+			@RequestParam int amount,
+			Model model
 			){
 		
 		System.out.println("장바구니 인서트");
 		String memberId=(String)session.getAttribute("id");
-		CartDto dto = new CartDto(productNum,memberId,1);
+		CartDto dto = new CartDto(productNum,memberId,amount);
 		cartService.cartAdd(dto);
 		return "redirect:/product/private/cartList.do";
 		
@@ -50,11 +52,11 @@ public class CartController {
 	}
 	
 	@RequestMapping("/product/private/cartDelete")
-	public String cartDelete(HttpSession session,@RequestParam int productNum){
+	public String cartDelete(HttpSession session,@RequestParam int idx){
 		
-		System.out.println("장바구니 삭제 하는데임");
+	
 		String memberId = (String)session.getAttribute("id");
-		cartService.cartDelete(productNum);
+		cartService.cartDelete(idx);
 		
 		return "redirect:/product/private/cartList.do";
 	}

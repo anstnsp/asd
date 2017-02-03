@@ -39,7 +39,7 @@ img{
 	
 	<c:forEach var="tmp" items="${list }" >
 		<tr height="30">
-		
+			
 			<td>${tmp.productNum }</td>
 			<td>${tmp.productName }</td>
 			<td onclick="detailView(${tmp.productNum})"><img src="${pageContext.request.contextPath }/upload/${tmp.saveFileName}"/></td>
@@ -53,7 +53,7 @@ img{
 		
 			<td>
 			<form action="${pageContext.request.contextPath}/product/private/cartDelete.do" method="post">
-				<input type="hidden" name="productNum" value="${tmp.productNum }"/>
+				<input type="hidden" name="idx" value="${tmp.idx}"/>
 				<button>삭제</button>
 			</form>
 			</td>
